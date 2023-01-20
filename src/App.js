@@ -111,12 +111,26 @@ class App extends React.Component {
     return (
       <div className="App">
 
-        <Header handleKeyPress={this.searchQuery} />
+        <Header>
+          handleKeyPress=
+          {
+            this.searchQuery
+          }
+        </Header>
 
-        <SearchSection
-          totalNews={this.state.totalNews}
-          searchBy={this.searchBy}
-          searchType={this.searchType} />
+        <SearchSection>
+
+          totalNews={
+            this.state.totalNews
+          }
+          searchBy={
+            this.searchBy
+          }
+          searchType={
+            this.searchType
+          }
+
+        </SearchSection>
 
         {
           this.state.loading && <Loader />
@@ -143,7 +157,7 @@ class App extends React.Component {
 
         {
           !this.state.loading &&
-          this.state.fetchError &&
+          !this.state.fetchError &&
           (
             <div className="errorMessage">Error occured while fetching news.</div>
           )
