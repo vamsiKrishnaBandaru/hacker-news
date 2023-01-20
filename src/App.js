@@ -3,7 +3,6 @@ import "./App.css"
 import Header from "./jsFiles/Header"
 import Loader from "./jsFiles/Loader"
 import NewsList from "./jsFiles/NewsList"
-import PagesNumbers from "./jsFiles/PagesNumbers"
 import SearchSection from "./jsFiles/SearchSection"
 
 class App extends React.Component {
@@ -97,7 +96,7 @@ class App extends React.Component {
     })
 
     return fetch(
-      `https://hn.algolia.com/api/v1/${this.state.searchBy}?query=${this.state.query}&hitsPerPage=50&page=${this.state.page}&tags=${this.state.searchType}`
+      `https://hn.algolia.com/api/v1/${this.state.searchBy}?query=${this.state.query}&hitsPerPage=1000&page=${this.state.page}&tags=${this.state.searchType}`
     )
       .then((response) => {
         if (response.ok) {
@@ -140,7 +139,7 @@ class App extends React.Component {
           searchType={this.searchType} />
 
         {
-          this.loading && <Loader/>
+          this.loading && <Loader />
         }
 
         {
@@ -151,18 +150,6 @@ class App extends React.Component {
               news={this.state.news}
               type={this.state.searchType}
             ></NewsList>
-          )
-        }
-
-        {
-          !this.loading &&
-          !this.state.fetchError &&
-          this.state.news.length > 0 && (
-            <PagesNumbers
-              page={this.state.page}
-              total={this.state.totalPages}
-              click={this.changePage}
-            ></PagesNumbers>
           )
         }
 
