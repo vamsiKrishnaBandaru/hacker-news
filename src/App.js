@@ -74,7 +74,7 @@ class App extends React.Component {
     })
 
     return fetch(
-      `https://hn.algolia.com/api/v1/${this.state.searchBy}?query=${this.state.query}&hitsPerPage=1000&page=${this.state.page}&tags=${this.state.searchType}`
+      `https://hn.algolia.com/api/v1/${this.state.searchBy}?query=${this.state.query}&hitsPerPage=500&page=${this.state.page}&tags=${this.state.searchType}`
     )
       .then((response) => {
         if (response.ok) {
