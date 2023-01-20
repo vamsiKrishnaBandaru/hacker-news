@@ -17,12 +17,6 @@ function SearchSection(props) {
         </select>
 
       </div>
-
-      <div className="search-time">
-        <span>{props.totalNews.toLocaleString()} results </span>
-        <span>({props.time / 1000} seconds)</span>
-      </div>
-
     </div>
   );
 }

@@ -7,15 +7,14 @@ class Header extends React.Component {
    render() {
       return (
          <header>
-            <img src="/images/logo.webp"></img>
+            <img src="/images/logo.webp" />
             <p className="title"> Hacker News
             </p>
             <div className="search-box">
                <div className="search-icon"></div>
                <input
                   placeholder="Search stories by title, url or author"
-                  onKeyDown={this.props.handleKeyPress}
-               ></input>
+                  onKeyDown={this.props.handleKeyPress} />
             </div>
          </header>
       );
