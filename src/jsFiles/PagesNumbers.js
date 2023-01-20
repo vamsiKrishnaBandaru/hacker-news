@@ -11,24 +11,27 @@ function PagesNumbers(props) {
 
   return (
     <ul className="PagesNumbers">
+
       {props.page > 5 && (
         <li className="page" key="start" onClick={props.click}>
           &lt;&lt;
         </li>
       )}
+
       {Array(10)
         .fill(0)
-        .map((_, index) => {
+        .map((element, index) => {
           return (
             <li
-              className={props.page == index + toStart ? "active page" : "page"}
-              key={index + 1 + toStart}
+              className={props.page == element + index + toStart ? "active page" : "page"}
+              key={element + index + 1 + toStart}
               onClick={props.click}
             >
               {index + 1 + toStart}
             </li>
           );
         })}
+        
       {props.page < props.total - 5 && (
         <li className="page" key="final" onClick={props.click}>
           &gt;&gt;
