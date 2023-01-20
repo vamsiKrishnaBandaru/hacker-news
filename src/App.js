@@ -135,13 +135,15 @@ class App extends React.Component {
           !this.loading &&
           !this.state.fetchError &&
           this.state.news.length === 0 && (
-            <p className="error">No news found</p>
+            <p className="errorMessage">No news found</p>
           )
         }
 
         {
-          !this.loading && this.state.fetchError && (
-            <div className="error">Error occured while fetching news.</div>
+          !this.loading &&
+          this.state.fetchError &&
+          (
+            <div className="errorMessage">Error occured while fetching news.</div>
           )
         }
       </div>
