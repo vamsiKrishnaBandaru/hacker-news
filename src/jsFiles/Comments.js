@@ -28,8 +28,7 @@ function Comments(props) {
         </span>
       </div>
       <div
-        dangerouslySetInnerHTML={{ __html: props.comment_text }}
-        style={{ marginTop: "0.5rem" }}
+        
       />
     </div>
   );
