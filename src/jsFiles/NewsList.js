@@ -9,10 +9,19 @@ class NewsList extends React.Component {
   render() {
     return (
       <div className="news-container">
-        {this.props.type == "story" &&
-          this.props.news.map((story) => News(story))}
-        {this.props.type == "comment" &&
-          this.props.news.map((story) => Comments(story))}
+
+        {
+          this.props.type == "story" &&
+          this.props.news.map((story) =>
+            News(story))
+        }
+
+        {
+          this.props.type == "comment" &&
+          this.props.news.map((story) =>
+            Comments(story))
+        }
+
       </div>
     );
   }
