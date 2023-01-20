@@ -28,7 +28,7 @@ function Comments(props) {
         </span>
       </div>
       <div
-        
+        dangerouslySetInnerHTML={{ __html: props.comment_text }}
       />
     </div>
   );
