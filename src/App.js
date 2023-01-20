@@ -15,7 +15,7 @@ class App extends React.Component {
       news: [],
       searchBy: "search",
       searchType: "story",
-      loading: false,
+      loading: false
     }
   }
 
@@ -29,7 +29,9 @@ class App extends React.Component {
       {
         query: query,
       },
-      this.fetchNews
+      () => {
+        this.fetchNews();
+      }
     )
   }
 
@@ -44,7 +46,9 @@ class App extends React.Component {
       {
         searchBy: search
       },
-      this.fetchNews
+      () => {
+        this.fetchNews();
+      }
     )
   }
 
@@ -60,10 +64,12 @@ class App extends React.Component {
     this.setState(
       {
         searchType: searchType,
-        news: []
+        news: [],
+        ok: this.fetchNews
       },
-      this.fetchNews
-    )
+      () => {
+        this.fetchNews();
+      })
   }
 
   fetchNews = () => {
