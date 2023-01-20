@@ -1,9 +1,9 @@
 import React from "react"
 import "./App.css"
-import Header from "./jsFiles/Header"
-import Loader from "./jsFiles/Loader"
-import NewsList from "./jsFiles/NewsList"
-import SearchSection from "./jsFiles/SearchSection"
+import Header from "./components/Header"
+import Loader from "./components/Loader"
+import NewsList from "./components/NewsList"
+import SearchSection from "./components/SearchSection"
 
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class App extends React.Component {
       news: [],
       searchBy: "search",
       searchType: "story",
+      loading: false
     }
-    this.loading = false
   }
 
   searchQuery = (event) => {
@@ -67,10 +67,10 @@ class App extends React.Component {
   }
 
   fetchNews = () => {
-    this.loading = true
 
     this.setState({
       fetchError: false,
+      loading: true
     })
 
     return fetch(
@@ -101,7 +101,9 @@ class App extends React.Component {
 
       .finally(() => {
         console.log("Finished Fetching")
-        this.loading = false
+        this.setState({
+          loading: false
+        })
       })
   }
 
@@ -117,11 +119,11 @@ class App extends React.Component {
           searchType={this.searchType} />
 
         {
-          this.loading && <Loader />
+          this.state.loading && <Loader />
         }
 
         {
-          !this.loading &&
+          !this.state.loading &&
           !this.state.fetchError &&
           this.state.news.length > 0 && (
             <NewsList
@@ -132,7 +134,7 @@ class App extends React.Component {
         }
 
         {
-          !this.loading &&
+          !this.state.loading &&
           !this.state.fetchError &&
           this.state.news.length === 0 && (
             <p className="errorMessage">No news found</p>
@@ -140,7 +142,7 @@ class App extends React.Component {
         }
 
         {
-          !this.loading &&
+          !this.state.loading &&
           this.state.fetchError &&
           (
             <div className="errorMessage">Error occured while fetching news.</div>
