@@ -15,7 +15,7 @@ class App extends React.Component {
       news: [],
       searchBy: "search",
       searchType: "story",
-      loading: false
+      loading: false,
     }
   }
 
@@ -42,8 +42,7 @@ class App extends React.Component {
 
     this.setState(
       {
-        searchBy: search,
-
+        searchBy: search
       },
       this.fetchNews
     )
@@ -61,7 +60,7 @@ class App extends React.Component {
     this.setState(
       {
         searchType: searchType,
-        news: [],
+        news: []
       },
       this.fetchNews
     )
