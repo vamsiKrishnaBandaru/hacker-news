@@ -10,7 +10,6 @@ class App extends React.Component {
     super(props)
     this.state = {
       page: 0,
-      totalPages: 0,
       totalNews: 0,
       query: "",
       news: [],
@@ -28,7 +27,6 @@ class App extends React.Component {
 
     this.setState(
       {
-        page: 0,
         query: query,
       },
       this.fetchNews
@@ -45,7 +43,6 @@ class App extends React.Component {
     this.setState(
       {
         searchBy: search,
-        page: 0,
       },
       this.fetchNews
     )
@@ -64,25 +61,6 @@ class App extends React.Component {
       {
         searchType: searchType,
         news: [],
-        page: 0,
-      },
-      this.fetchNews
-    )
-  }
-
-  changePage = (event) => {
-    let page
-    if (event.target.textContent === ">>") {
-      page = this.state.totalPages - 1
-    } else if (event.target.textContent === "<<") {
-      page = 0
-    } else {
-      page += event.target.textContent - 1
-    }
-
-    this.setState(
-      {
-        page: page,
       },
       this.fetchNews
     )
