@@ -1,7 +1,7 @@
 function Comments(props) {
   return (
     <div className="news" key={props.objectID}>
-      <div className="news-details">
+      <div className="news-details" style={{ fontSize: "0.5rem !important" }}>
         <span>
           <a href={"https://news.ycombinator.com/item?id=" + props.objectID}>
             {props.points || 0} points
