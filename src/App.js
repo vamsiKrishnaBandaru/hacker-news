@@ -13,7 +13,6 @@ class App extends React.Component {
       page: 0,
       totalPages: 0,
       totalNews: 0,
-      fetchTime: 0,
       query: "",
       news: [],
       searchBy: "search",
@@ -65,8 +64,8 @@ class App extends React.Component {
     this.setState(
       {
         searchType: searchType,
-        page: 0,
         news: [],
+        page: 0,
       },
       this.fetchNews
     )
@@ -113,7 +112,6 @@ class App extends React.Component {
           news: data.hits,
           totalPages: data.nbPages,
           totalNews: data.nbHits,
-          fetchTime: data.processingTimeMS,
         }))
       })
 
@@ -125,6 +123,7 @@ class App extends React.Component {
       })
 
       .finally(() => {
+        console.log("Finished Fetching")
         this.loading = false
       })
   }
@@ -132,23 +131,31 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header handleKeyPress={this.searchQuery}></Header>
+
+        <Header handleKeyPress={this.searchQuery} />
+
         <SearchSection
           totalNews={this.state.totalNews}
-          time={this.state.fetchTime}
           searchBy={this.searchBy}
-          searchType={this.searchType}
-        ></SearchSection>
-        {this.loading && <Loader></Loader>}
-        {!this.loading &&
+          searchType={this.searchType} />
+
+        {
+          this.loading && <Loader/>
+        }
+
+        {
+          !this.loading &&
           !this.state.fetchError &&
           this.state.news.length > 0 && (
             <NewsList
               news={this.state.news}
               type={this.state.searchType}
             ></NewsList>
-          )}
-        {!this.loading &&
+          )
+        }
+
+        {
+          !this.loading &&
           !this.state.fetchError &&
           this.state.news.length > 0 && (
             <PagesNumbers
@@ -156,15 +163,22 @@ class App extends React.Component {
               total={this.state.totalPages}
               click={this.changePage}
             ></PagesNumbers>
-          )}
-        {!this.loading &&
+          )
+        }
+
+        {
+          !this.loading &&
           !this.state.fetchError &&
           this.state.news.length === 0 && (
             <p className="error">No news found</p>
-          )}
-        {!this.loading && this.state.fetchError && (
-          <div className="error">An Error occured while fetching the news.</div>
-        )}
+          )
+        }
+
+        {
+          !this.loading && this.state.fetchError && (
+            <div className="error">Error occured while fetching news.</div>
+          )
+        }
       </div>
     )
   }
