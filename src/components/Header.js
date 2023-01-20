@@ -14,7 +14,9 @@ class Header extends React.Component {
                <div className="search-icon"></div>
                <input
                   placeholder="Search stories by title, url or author"
-                  onKeyDown={this.props.handleKeyPress} />
+                  onKeyDown={
+                     this.props.handleKeyPress
+                  } />
             </div>
          </header>
       );

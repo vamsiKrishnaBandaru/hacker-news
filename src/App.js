@@ -43,6 +43,7 @@ class App extends React.Component {
     this.setState(
       {
         searchBy: search,
+
       },
       this.fetchNews
     )
@@ -68,18 +69,13 @@ class App extends React.Component {
 
   fetchNews = () => {
 
-    this.setState(
-      {
-        fetchError: false,
-        loading: true
-      }
-    )
+    this.setState({
+      fetchError: false,
+      loading: true
+    })
 
     return fetch(
-      `https://hn.algolia.com/api/v1/${this.state.searchBy
-      }?query=${this.state.query
-      }&hitsPerPage=500&page=0&tags=${this.state.searchType
-      }`
+      `https://hn.algolia.com/api/v1/${this.state.searchBy}?query=${this.state.query}&hitsPerPage=1000&page=${this.state.page}&tags=${this.state.searchType}`
     )
       .then((response) => {
         if (response.ok) {
@@ -106,9 +102,7 @@ class App extends React.Component {
 
       .finally(() => {
         console.log("Finished Fetching")
-        this.setState({
-          loading: false
-        })
+        this.state.loading = false
       })
   }
 
@@ -116,28 +110,20 @@ class App extends React.Component {
     return (
       <div className="App">
 
-        <Header>
-          handleKeyPress=
-          {
-            this.searchQuery
-          }
-        </Header>
+        <Header handleKeyPress={
+          this.searchQuery
+        } />
 
-        <SearchSection>
-
+        <SearchSection
           totalNews={
             this.state.totalNews
           }
-
           searchBy={
             this.searchBy
           }
-
           searchType={
             this.searchType
-          }
-
-        </SearchSection>
+          } />
 
         {
           this.state.loading && <Loader />
@@ -146,18 +132,22 @@ class App extends React.Component {
         {
           !this.state.loading &&
           !this.state.fetchError &&
-          this.state.news.length > 0 && (
+          this.state.news.length > 0 &&
+          (
             <NewsList
-              news={this.state.news}
-              type={this.state.searchType}
-            ></NewsList>
+              news={
+                this.state.news
+              }
+              type={
+                this.state.searchType
+              }
+            />
           )
         }
 
         {
           !this.state.loading &&
           !this.state.fetchError &&
-          this.state.news.length === 0 &&
           (
             <p className="errorMessage">No news found</p>
           )
